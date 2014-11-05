@@ -124,8 +124,12 @@ for(i=0; i<6; i++){
     }else if(vertical!=4){vertical=0;}
 }
 
-//DIAGONAL DERECHA
-
+//DIAGONAL DERECHA ----->
+for(i=0,i<3, i++){
+    for(j=0, j<4, j++){
+        if()
+    }
+}
 
 
 }
