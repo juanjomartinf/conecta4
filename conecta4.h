@@ -143,7 +143,7 @@ for(i=0; i<7; i++){
     }
 }
 if(mejor_puntuacion==0)
-    meter_ficha(2,5);
+    meter_ficha(2,5);           // AQUI ES DONDE TIENES QUE COLOCAR EL ALEATORIO NO ?? PORQUE 2,5 ??
 else
     meter_ficha(2,mejor_posicion);
 
