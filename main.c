@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<conecta4.h>
+#include<C:\Users\MISTERCRASH\Documents\C\conecta4\conecta4\conecta4\conecta4\conecta4.h>
 
 void main(){
 char jugar='y';
@@ -23,10 +23,11 @@ while(juego){
     while(!meter_ficha(1,lector)){
         scanf("%d", &lector);
     }
-    //meter_ficha(2,lector);
+    adversario();
      if(comprobar(1)){
-
         juego=0;
+     }else if(comprobar(2)){
+     juego=0;
      }
         pintar();
 
