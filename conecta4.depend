@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1414660623 source:c:\users\bl0583\documents\conecta4\conecta4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<C:\Users\bl0583\Documents\conecta4\conecta4\conecta4.h>
+
+1414690927 source:c:\users\mistercrash\documents\c\conecta4\conecta4\conecta4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conecta4.h>
+
