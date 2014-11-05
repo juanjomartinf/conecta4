@@ -46,13 +46,10 @@ void limpiar_tablero(){
     }
 }
 int aleatorio (){
-    int secreto;
 
     srand((int)time(NULL));
-    secreto = rand()%2 + 1;
-    printf("\tsecreto: %d",secreto);
+    return rand()%2 + 1;
 
-    return secreto;
 }
 int comprobar(int ficha){
 
@@ -108,28 +105,42 @@ printf("La columna esta llena, seleccione otra.\n");
 return 0;
 }
 }}
-
+void adversario(){}
 int comprobar_si(int ficha, int fila, int columna){
+
 int horizontal=0, vertical=0, diagonal_der=0, diagonal_izq=0;
+
 //HORIZONTAL
 for(j=0; j<7; j++){
     if(tabla[fila][j]==ficha || columna==j){
         horizontal++;
     }else if(horizontal!=4){horizontal=0;}
 }
+if(horizontal!=4)
+    horizontal=0;
 //VERTICAL
 for(i=0; i<6; i++){
     if(tabla[i][columna]==ficha || fila==i){
         vertical++;
     }else if(vertical!=4){vertical=0;}
 }
-
+if(vertical!=4)
+    vertical=0;
 //DIAGONAL DERECHA ----->
-for(i=0,i<3, i++){
-    for(j=0, j<4, j++){
-        if()
+for(i=3; i<6; i++){
+    for(j=0; j<4; j++){
+        if((tabla[i][j]==ficha || (i==fila &&columna==j))&& (tabla[i-1][j+1]==ficha ||(i-1==fila &&columna==j+1)) && (tabla[i-2][j+2]==ficha || (i-2==fila &&columna==j+2)) && (tabla[i-3][j+3]==ficha || (i-3==fila &&columna==j+3) ))
+            diagonal_der=1;
     }
 }
 
+//DIAGONAL IZQUIERDA <-------
+for(i=3; i<6; i++){
+    for(j=6; j>2; j--){
+         if((tabla[i][j]==ficha || (i==fila &&columna==j))&& (tabla[i-1][j-1]==ficha ||(i-1==fila &&columna==j-1)) && (tabla[i-2][j-2]==ficha || (i-2==fila &&columna==j-2)) && (tabla[i-3][j-3]==ficha || (i-3==fila &&columna==j-3) ))
+            diagonal_izq=1;
+    }
+}
+return horizontal+vertical+diagonal_der+diagonal_izq;
 
 }
