@@ -45,10 +45,10 @@ void limpiar_tablero(){
         }
     }
 }
-int aleatorio (){
+int aleatorio (int minimo, int maximo){
 
     srand((int)time(NULL));
-    return rand()%2 + 1;
+    return rand()%maximo + minimo;
 
 }
 int comprobar(int ficha){
@@ -105,7 +105,50 @@ printf("La columna esta llena, seleccione otra.\n");
 return 0;
 }
 }}
-void adversario(){}
+void adversario(){
+int libre=0, mejor_puntuacion=0, mejor_posicion=0;
+int puntuacion[7]={0};
+printf("\n Turno del ordenador (le quedan %d fichas)...", n_fichas_ordenador);
+for(j=0; j<7; j++){
+    while(tabla[libre][j]==0 && tabla[libre+1][j]==0 && libre<6){
+        libre++;
+    }
+    if(comprobar_si(2,libre,j) && j>=0){
+        meter_ficha(2,j);
+    }else if(comprobar_si(1,libre,j) && j>=0){
+        meter_ficha(2,j);
+    }else{
+    switch(cuantas_fichas_tengo_al_lado(j)){
+        case 1:
+            puntuacion[j]=1;
+            break;
+        case 2:
+            puntuacion[j]=10;
+            break;
+        case 3:
+            puntuacion[j]=100;
+            break;
+        case 0:
+            puntuacion[j]=0;
+            break;
+    }
+
+    }
+}
+mejor_puntuacion=puntuacion[0];
+for(i=0; i<7; i++){
+    if(mejor_puntuacion<puntuacion[i]){
+    mejor_puntuacion=puntuacion[i];
+    mejor_posicion=i;
+    }
+}
+if(mejor_puntuacion==0)
+    meter_ficha(2,5);
+else
+    meter_ficha(2,mejor_posicion);
+
+
+}
 int comprobar_si(int ficha, int fila, int columna){
 
 int horizontal=0, vertical=0, diagonal_der=0, diagonal_izq=0;
@@ -143,4 +186,30 @@ for(i=3; i<6; i++){
 }
 return horizontal+vertical+diagonal_der+diagonal_izq;
 
+}
+
+int cuantas_fichas_tengo_al_lado(int columna){
+int libre=0, horizontal=0, vertical=0, diagonal_d=0, diagonal_i=0;
+while(tabla[libre][columna]==0 && tabla[libre+1][columna]==0 && libre<6){
+    libre++;
+}
+//HORIZONTAL(Derecha)
+for(i=1; i<4 && i+columna!=7 && tabla[libre][columna+i]==2; i++){
+        horizontal++;
+}
+//HORIZONTAL(IZQUIERDA)
+for(i=1; i<4 && columna-i!=-1 && tabla[libre][columna-i]==2; i++){
+        horizontal++;
+}
+//VERTICAL
+for(i=1; i<4 && libre-i!=-1 &&tabla[libre+i][columna]==2; i++){
+        vertical++;
+}
+if(vertical>horizontal){
+        printf("\nFICHAS AL LADO (v)= %d [%d][%d]", vertical, libre, columna);
+    return vertical;
+}else{
+    printf("\nFICHAS AL LADO(h)= %d [%d][%d]", horizontal,libre, columna);
+    return horizontal;
+}
 }
