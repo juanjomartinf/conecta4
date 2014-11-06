@@ -4,9 +4,7 @@ int i,j, col=0, fil=0;
 int ganador=0;
 int n_fichas=21, n_fichas_ordenador=21;
 void reset(){
-for(i=0; i<6; i++){
-    for(j=0; j<7; j++){
-        tabla[i][j]=0;}}
+limpiar_tablero();
 n_fichas=n_fichas_ordenador=21;
 juego=1;
 ganador=0;
@@ -187,7 +185,6 @@ for(i=3; i<6; i++){
 return horizontal+vertical+diagonal_der+diagonal_izq;
 
 }
-
 int cuantas_fichas_tengo_al_lado(int columna){
 int libre=0, horizontal=0, vertical=0, diagonal_d=0, diagonal_i=0;
 while(tabla[libre][columna]==0 && tabla[libre+1][columna]==0 && libre<6){
